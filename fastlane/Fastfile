@@ -1,0 +1,49 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+fastlane_require 'dotenv'
+
+app_identifier = ENV["SECRET_APP_IDENTIFIER"]
+apple_id = ENV["SECRET_APPLE_ID"]
+itc_team_id = ENV["SECRET_ITC_TEAM_ID"]
+team_id = ENV["SECRET_TEAM_ID"]
+
+before_all do
+  Dotenv.overload '.env.secret'
+end
+
+platform :ios do
+  desc "Push a new beta build to TestFlight"
+  lane :beta do
+    reset_git_repo(force: true)
+    git_pull
+    increment_build_number
+    increment_version_number
+    cocoapods(use_bundle_exec: true)
+    build_app(scheme: "PuzzleApp")
+    version = get_version_number
+    build_number = get_build_number
+    commit_version_bump(
+      message: 'Build Version Bump by fastlane',
+      force: true
+    )
+    add_git_tag(tag: "#{version}-#{build_number}")
+    push_to_git_remote
+    upload_to_testflight(
+	skip_waiting_for_build_processing: true
+    )
+  end
+end
