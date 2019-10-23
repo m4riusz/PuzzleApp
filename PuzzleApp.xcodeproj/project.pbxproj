@@ -14,6 +14,9 @@
 		6F1BBE7A23602FF80044CC09 /* PuzzleAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BBE7923602FF80044CC09 /* PuzzleAppTests.swift */; };
 		6F1BBE8523602FF80044CC09 /* PuzzleAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BBE8423602FF80044CC09 /* PuzzleAppUITests.swift */; };
 		6F5E7D5A23607444001AA9FF /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5E7D5923607444001AA9FF /* MainView.swift */; };
+		6F8C5CDE2360ACF700F62947 /* MapForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8C5CDD2360ACF700F62947 /* MapForm.swift */; };
+		6F8C5CE12360BC3800F62947 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8C5CE02360BC3800F62947 /* SliderView.swift */; };
+		6F8C5CE32360C11500F62947 /* SectionTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8C5CE22360C11500F62947 /* SectionTitle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +50,9 @@
 		6F1BBE8423602FF80044CC09 /* PuzzleAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleAppUITests.swift; sourceTree = "<group>"; };
 		6F1BBE8623602FF80044CC09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6F5E7D5923607444001AA9FF /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		6F8C5CDD2360ACF700F62947 /* MapForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapForm.swift; sourceTree = "<group>"; };
+		6F8C5CE02360BC3800F62947 /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
+		6F8C5CE22360C11500F62947 /* SectionTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTitle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +103,8 @@
 		6F1BBE6123602FF50044CC09 /* PuzzleApp */ = {
 			isa = PBXGroup;
 			children = (
+				6F8C5CDF2360B96D00F62947 /* Views */,
+				6F8C5CDC2360ACCE00F62947 /* MapForm */,
 				6F5E7D562360741B001AA9FF /* Main */,
 				6F1BBE6423602FF50044CC09 /* SceneDelegate.swift */,
 				6F1BBE6823602FF80044CC09 /* Assets.xcassets */,
@@ -139,6 +147,23 @@
 				6F5E7D5923607444001AA9FF /* MainView.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		6F8C5CDC2360ACCE00F62947 /* MapForm */ = {
+			isa = PBXGroup;
+			children = (
+				6F8C5CDD2360ACF700F62947 /* MapForm.swift */,
+			);
+			path = MapForm;
+			sourceTree = "<group>";
+		};
+		6F8C5CDF2360B96D00F62947 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6F8C5CE02360BC3800F62947 /* SliderView.swift */,
+				6F8C5CE22360C11500F62947 /* SectionTitle.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,8 +297,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F8C5CE32360C11500F62947 /* SectionTitle.swift in Sources */,
 				6F1BBE6523602FF50044CC09 /* SceneDelegate.swift in Sources */,
+				6F8C5CE12360BC3800F62947 /* SliderView.swift in Sources */,
 				6F5E7D5A23607444001AA9FF /* MainView.swift in Sources */,
+				6F8C5CDE2360ACF700F62947 /* MapForm.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
