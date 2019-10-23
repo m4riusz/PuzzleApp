@@ -14,7 +14,6 @@
 # update_fastlane
 
 default_platform(:ios)
-setup_travis
 fastlane_require 'dotenv'
 
 before_all do
@@ -22,6 +21,7 @@ before_all do
 end
 
 platform :ios do
+  setup_travis
   desc "Push a new beta build to TestFlight"
   lane :beta do
     reset_git_repo(force: true)
