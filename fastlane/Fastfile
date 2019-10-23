@@ -16,11 +16,6 @@
 default_platform(:ios)
 fastlane_require 'dotenv'
 
-app_identifier = ENV["SECRET_APP_IDENTIFIER"]
-apple_id = ENV["SECRET_APPLE_ID"]
-itc_team_id = ENV["SECRET_ITC_TEAM_ID"]
-team_id = ENV["SECRET_TEAM_ID"]
-
 before_all do
   Dotenv.overload '.env.secret'
 end
@@ -42,6 +37,9 @@ platform :ios do
     add_git_tag(tag: "#{version}-#{build_number}")
     push_to_git_remote
     upload_to_testflight(
+        app_identifier: ENV["SECRET_APP_IDENTIFIER"],
+        username: ENV["SECRET_APPLE_ID"],
+        team_id: ENV["SECRET_ITC_TEAM_ID"],
 	skip_waiting_for_build_processing: true
     )
   end
