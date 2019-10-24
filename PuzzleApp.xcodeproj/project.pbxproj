@@ -20,6 +20,7 @@
 		6F447F7C23619F2900F4FC68 /* FormSubmitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F447F7B23619F2900F4FC68 /* FormSubmitButton.swift */; };
 		6F447F7E2361ADAC00F4FC68 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F447F7D2361ADAC00F4FC68 /* ImagePickerView.swift */; };
 		6F447F832361B99100F4FC68 /* FormImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F447F822361B99100F4FC68 /* FormImagePickerView.swift */; };
+		6F447F872361CD3300F4FC68 /* AdaptsToSoftwareKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F447F862361CD3300F4FC68 /* AdaptsToSoftwareKeyboard.swift */; };
 		6F5E7D5A23607444001AA9FF /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5E7D5923607444001AA9FF /* MainView.swift */; };
 		6F8C5CDE2360ACF700F62947 /* PuzzleMapForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8C5CDD2360ACF700F62947 /* PuzzleMapForm.swift */; };
 		6F8C5CE12360BC3800F62947 /* FormSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8C5CE02360BC3800F62947 /* FormSliderView.swift */; };
@@ -65,6 +66,7 @@
 		6F447F7B23619F2900F4FC68 /* FormSubmitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormSubmitButton.swift; sourceTree = "<group>"; };
 		6F447F7D2361ADAC00F4FC68 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		6F447F822361B99100F4FC68 /* FormImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormImagePickerView.swift; sourceTree = "<group>"; };
+		6F447F862361CD3300F4FC68 /* AdaptsToSoftwareKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptsToSoftwareKeyboard.swift; sourceTree = "<group>"; };
 		6F5E7D5923607444001AA9FF /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		6F8C5CDD2360ACF700F62947 /* PuzzleMapForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleMapForm.swift; sourceTree = "<group>"; };
 		6F8C5CE02360BC3800F62947 /* FormSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormSliderView.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 		6F1BBE6123602FF50044CC09 /* PuzzleApp */ = {
 			isa = PBXGroup;
 			children = (
+				6F447F842361CD0B00F4FC68 /* Utils */,
 				6F447F6E2361958100F4FC68 /* Models */,
 				6F8C5CDF2360B96D00F62947 /* Views */,
 				6F8C5CDC2360ACCE00F62947 /* PuzzleMapForm */,
@@ -177,6 +180,22 @@
 				6F447F822361B99100F4FC68 /* FormImagePickerView.swift */,
 			);
 			path = views;
+			sourceTree = "<group>";
+		};
+		6F447F842361CD0B00F4FC68 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				6F447F852361CD1500F4FC68 /* viewModifires */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		6F447F852361CD1500F4FC68 /* viewModifires */ = {
+			isa = PBXGroup;
+			children = (
+				6F447F862361CD3300F4FC68 /* AdaptsToSoftwareKeyboard.swift */,
+			);
+			path = viewModifires;
 			sourceTree = "<group>";
 		};
 		6F5E7D562360741B001AA9FF /* Main */ = {
@@ -339,6 +358,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F8C5CE32360C11500F62947 /* FormSectionTitle.swift in Sources */,
+				6F447F872361CD3300F4FC68 /* AdaptsToSoftwareKeyboard.swift in Sources */,
 				6F447F7C23619F2900F4FC68 /* FormSubmitButton.swift in Sources */,
 				6F447F722361968900F4FC68 /* Puzzle.swift in Sources */,
 				6F1BBE6523602FF50044CC09 /* SceneDelegate.swift in Sources */,

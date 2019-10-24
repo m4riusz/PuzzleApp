@@ -11,9 +11,9 @@ import SwiftUI
 struct PuzzleMapForm: View {
     
     @ObservedObject var puzzleMapFormViewModel: PuzzleMapFormViewModel
-    @State var isPresentingCameraPicker: Bool = false
-    @State var isPresentingLibraryPicker: Bool = false
+    @State var isPresentingPicker: Bool = false
     @State var isPresentingPickerOptions: Bool = false
+    @State var pickerType: UIImagePickerController.SourceType = .camera
     
     var body: some View {
         NavigationView {
@@ -43,25 +43,24 @@ struct PuzzleMapForm: View {
                     }
                 }
             }
+            .modifier(AdaptsToSoftwareKeyboard())
             .navigationBarTitle(Text("Map form"))
             .actionSheet(isPresented: self.$isPresentingPickerOptions, content: {
                 ActionSheet(title: Text("Image source"),
                             buttons: [
                                 .default(Text("Camera")) {
-                                    self.isPresentingCameraPicker.toggle()
+                                    self.pickerType = .camera
+                                    self.isPresentingPicker.toggle()
                                 },
                                 .default(Text("Library")) {
-                                    self.isPresentingLibraryPicker.toggle()
+                                    self.pickerType = .photoLibrary
+                                    self.isPresentingPicker.toggle()
                                 },
                                 .cancel()
                 ])
-            }).sheet(isPresented: self.$isPresentingCameraPicker, content: {
-                ImagePickerView(source: .camera,
-                                isPresented: self.$isPresentingCameraPicker,
-                                image: self.$puzzleMapFormViewModel.image)
-            }).sheet(isPresented: self.$isPresentingLibraryPicker, content: {
-                ImagePickerView(source: .photoLibrary,
-                                isPresented: self.$isPresentingLibraryPicker,
+            }).sheet(isPresented: self.$isPresentingPicker, content: {
+                ImagePickerView(source: self.pickerType,
+                                isPresented: self.$isPresentingPicker,
                                 image: self.$puzzleMapFormViewModel.image)
             })
         }

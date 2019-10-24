@@ -11,7 +11,6 @@ import Combine
 import SwiftUI
 
 final class PuzzleMapFormViewModel: ObservableObject {
-    
     @Published var name: String = ""
     @Published var minNumberOfRows: Float = 4
     @Published var numberOfRows: Float = 4
@@ -21,7 +20,4 @@ final class PuzzleMapFormViewModel: ObservableObject {
     @Published var maxNumberOfColumns: Float = 10
     @Published var image: UIImage?
     @Published var isFormValid: Bool = false
-    
-    
-    
 }
