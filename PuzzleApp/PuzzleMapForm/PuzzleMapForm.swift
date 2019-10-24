@@ -32,19 +32,27 @@ struct PuzzleMapForm: View {
                                    currentValue: self.$puzzleMapFormViewModel.numberOfColumns)
                 }
                 Section(header: FormSectionTitle(text: "Image")) {
-                    FormImagePickerView(text: "Pick",
+                    FormImagePickerView(text: self.puzzleMapFormViewModel.image == nil ? "Pick" : "Change",
                                         action: { self.isPresentingPickerOptions.toggle() },
                                         image: self.$puzzleMapFormViewModel.image)
                 }
                 Section {
-                    FormSubmitButton(text: "Save",
-                                     enabled: self.puzzleMapFormViewModel.isFormValid) {
-                                        
+                    FormButton(text: "Save",
+                               color: .systemBlue,
+                               enabled: self.puzzleMapFormViewModel.isFormValid) {
+                                
+                    }
+                    if !self.puzzleMapFormViewModel.operationType.isCreateOption() {
+                        FormButton(text: "Delete",
+                                   color: .systemRed,
+                                   enabled: true) {
+                                    
+                        }
                     }
                 }
             }
             .modifier(AdaptsToSoftwareKeyboard())
-            .navigationBarTitle(Text("Map form"))
+            .navigationBarTitle(Text(self.puzzleMapFormViewModel.operationType.isCreateOption() ? "Create map" : "Edit map"))
             .actionSheet(isPresented: self.$isPresentingPickerOptions, content: {
                 ActionSheet(title: Text("Image source"),
                             buttons: [
@@ -69,6 +77,17 @@ struct PuzzleMapForm: View {
 
 struct MapForm_Previews: PreviewProvider {
     static var previews: some View {
-        PuzzleMapForm(puzzleMapFormViewModel: PuzzleMapFormViewModel())
+        PuzzleMapForm(puzzleMapFormViewModel:
+            PuzzleMapFormViewModel(operationType:
+                .create(puzzleMap: PuzzleMap(id: 0,
+                                             name: "",
+                                             minNumerOfRows: 4,
+                                             numberOfRows: 4,
+                                             maxNumberOfRows: 10,
+                                             minNumberOfColumns: 4,
+                                             numberOfColumns: 4,
+                                             maxNumberOfColumns: 10,
+                                             image: nil,
+                                             puzzles: []))))
     }
 }

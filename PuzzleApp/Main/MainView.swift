@@ -10,7 +10,21 @@ import SwiftUI
 
 struct MainView: View {
     var body: some View {
-        PuzzleMapForm(puzzleMapFormViewModel: PuzzleMapFormViewModel())
+        PuzzleMapForm(puzzleMapFormViewModel:
+            PuzzleMapFormViewModel(operationType:
+                .create(puzzleMap: PuzzleMap(id: 1,
+                                             name: "AA",
+                                             minNumerOfRows: 4,
+                                             numberOfRows: 5,
+                                             maxNumberOfRows: 10,
+                                             minNumberOfColumns: 4,
+                                             numberOfColumns: 7,
+                                             maxNumberOfColumns: 10,
+                                             image: nil,
+                                             puzzles: [])
+                )
+            )
+        )
     }
 }
 

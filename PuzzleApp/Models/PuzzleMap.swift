@@ -7,11 +7,17 @@
 //
 
 import Foundation
+import UIKit
 
 struct PuzzleMap {
     let id: Int
     let name: String
+    let minNumerOfRows: Int
     let numberOfRows: Int
+    let maxNumberOfRows: Int
+    let minNumberOfColumns: Int
     let numberOfColumns: Int
+    let maxNumberOfColumns: Int
+    let image: UIImage?
     let puzzles: [Puzzle]
 }

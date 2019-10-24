@@ -10,8 +10,11 @@
 "Number of columns" = "Ilość kolumn";
 "Image" = "Zdjęcie";
 "Pick" = "Wybierz";
+"Change" = "Zmień";
 "Save" = "ZAPISZ";
-"Map form" = "Plansza";
+"Delete" = "USUŃ";
+"Create map" = "Nowa plansza";
+"Edit map" = "Edycja planszy";
 "Image source" = "Źródło zdjęcia";
 "Camera" = "Nowe zdjęcie";
 "Library" = "Biblioteka zdjęć";

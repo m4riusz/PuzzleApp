@@ -10,8 +10,11 @@
 "Number of columns" = "Number of columns";
 "Image" = "Image";
 "Pick" = "Pick";
+"Change" = "Change";
 "Save" = "SAVE";
-"Map form" = "Map";
+"Delete" = "DELETE";
+"Create map" = "New map";
+"Edit map" = "Edit map";
 "Image source" = "Image source";
 "Camera" = "Take picture";
 "Library" = "Photo library";

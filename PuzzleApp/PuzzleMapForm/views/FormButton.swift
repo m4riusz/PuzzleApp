@@ -1,5 +1,5 @@
 //
-//  FormSubmitButton.swift
+//  FormButton.swift
 //  PuzzleApp
 //
 //  Created by Mariusz Sut on 24/10/2019.
@@ -8,30 +8,33 @@
 
 import SwiftUI
 
-struct FormSubmitButton: View {
+struct FormButton: View {
     let text: LocalizedStringKey
+    let color: UIColor
     let enabled: Bool
     let action: () -> Void
     
     var body: some View {
-        Button(action: action,
+        Button(action: self.action,
                label: {
-                Text(text)
+                Text(self.text)
                     .font(.body)
                     .fontWeight(.semibold)
                     .frame(minWidth: 0,
                            maxWidth: .infinity,
                            alignment: .center)
         })
-            .disabled(!enabled)
+            .accentColor(Color(self.color))
+            .disabled(!self.enabled)
             .padding()
     }
 }
 
-struct FormSubmitButton_Previews: PreviewProvider {
+struct FormButton_Previews: PreviewProvider {
     static var previews: some View {
-        FormSubmitButton(text: "Save",
-                         enabled: false,
-                         action: {})
+        FormButton(text: "Save",
+                   color: .red,
+                   enabled: false,
+                   action: {})
     }
 }
