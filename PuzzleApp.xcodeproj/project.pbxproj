@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -21,6 +21,7 @@
 		6F447F7E2361ADAC00F4FC68 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F447F7D2361ADAC00F4FC68 /* ImagePickerView.swift */; };
 		6F447F832361B99100F4FC68 /* FormImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F447F822361B99100F4FC68 /* FormImagePickerView.swift */; };
 		6F447F872361CD3300F4FC68 /* AdaptsToSoftwareKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F447F862361CD3300F4FC68 /* AdaptsToSoftwareKeyboard.swift */; };
+		6F447F8B2361D93C00F4FC68 /* CancelBag in Frameworks */ = {isa = PBXBuildFile; productRef = 6F447F8A2361D93C00F4FC68 /* CancelBag */; };
 		6F5E7D5A23607444001AA9FF /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5E7D5923607444001AA9FF /* MainView.swift */; };
 		6F8C5CDE2360ACF700F62947 /* PuzzleMapForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8C5CDD2360ACF700F62947 /* PuzzleMapForm.swift */; };
 		6F8C5CE12360BC3800F62947 /* FormSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8C5CE02360BC3800F62947 /* FormSliderView.swift */; };
@@ -78,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F447F8B2361D93C00F4FC68 /* CancelBag in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,6 +187,7 @@
 		6F447F842361CD0B00F4FC68 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				6F447F882361D76900F4FC68 /* extensions */,
 				6F447F852361CD1500F4FC68 /* viewModifires */,
 			);
 			path = Utils;
@@ -196,6 +199,13 @@
 				6F447F862361CD3300F4FC68 /* AdaptsToSoftwareKeyboard.swift */,
 			);
 			path = viewModifires;
+			sourceTree = "<group>";
+		};
+		6F447F882361D76900F4FC68 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = extensions;
 			sourceTree = "<group>";
 		};
 		6F5E7D562360741B001AA9FF /* Main */ = {
@@ -240,6 +250,9 @@
 			dependencies = (
 			);
 			name = PuzzleApp;
+			packageProductDependencies = (
+				6F447F8A2361D93C00F4FC68 /* CancelBag */,
+			);
 			productName = PuzzleApp;
 			productReference = 6F1BBE5F23602FF50044CC09 /* PuzzleApp.app */;
 			productType = "com.apple.product-type.application";
@@ -313,6 +326,9 @@
 				pl,
 			);
 			mainGroup = 6F1BBE5623602FF50044CC09;
+			packageReferences = (
+				6F447F892361D93C00F4FC68 /* XCRemoteSwiftPackageReference "CancelBag" */,
+			);
 			productRefGroup = 6F1BBE6023602FF50044CC09 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -715,6 +731,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6F447F892361D93C00F4FC68 /* XCRemoteSwiftPackageReference "CancelBag" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/CancelBag";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6F447F8A2361D93C00F4FC68 /* CancelBag */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6F447F892361D93C00F4FC68 /* XCRemoteSwiftPackageReference "CancelBag" */;
+			productName = CancelBag;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6F1BBE5723602FF50044CC09 /* Project object */;
 }
