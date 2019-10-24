@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  PuzzleApp
+
+  Created by Mariusz Sut on 24/10/2019.
+  Copyright © 2019 Mariusz Sut. All rights reserved.
+*/
+"Name" = "Name";
+"Number of rows" = "Number of rows";
+"Number of columns" = "Number of columns";
+"Image" = "Image";
+"Pick" = "Pick";
+"Save" = "SAVE";
+"Map form" = "Map";
+"Image source" = "Image source";
+"Camera" = "Take picture";
+"Library" = "Photo library";
