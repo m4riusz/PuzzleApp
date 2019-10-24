@@ -1,5 +1,5 @@
 //
-//  SectionTitle.swift
+//  FormSectionTitle.swift
 //  PuzzleApp
 //
 //  Created by Mariusz Sut on 23/10/2019.
@@ -8,18 +8,18 @@
 
 import SwiftUI
 
-struct SectionTitle: View {
+struct FormSectionTitle: View {
     let text: String
     
     var body: some View {
-        Text(text)
+        Text(LocalizedStringKey(text))
             .font(.body)
             .fontWeight(.regular)
     }
 }
 
-struct SectionTitle_Previews: PreviewProvider {
+struct FormSectionTitle_Previews: PreviewProvider {
     static var previews: some View {
-        SectionTitle(text: "Some text")
+        FormSectionTitle(text: "Some text")
     }
 }

@@ -18,6 +18,10 @@
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
 	<string>$(MARKETING_VERSION)</string>
+    <key>NSCameraUsageDescription</key>
+    <string>This app wants to take pictures.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>This app wants to use your photos.</string>
 	<key>CFBundleVersion</key>
 	<string>9</string>
 	<key>LSRequiresIPhoneOS</key>

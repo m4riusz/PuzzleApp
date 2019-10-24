@@ -1,5 +1,5 @@
 //
-//  SliderView.swift
+//  FormSliderView.swift
 //  PuzzleApp
 //
 //  Created by Mariusz Sut on 23/10/2019.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct SliderView: View {
+struct FormSliderView: View {
     @Binding var minValue: Float
     @Binding var maxValue: Float
     @Binding var currentValue: Float
@@ -33,10 +33,10 @@ struct SliderView: View {
     }
 }
 
-struct SliderView_Previews: PreviewProvider {
+struct FormSliderView_Previews: PreviewProvider {
     static var previews: some View {
-        SliderView(minValue: Binding<Float>.constant(4),
-                   maxValue: Binding<Float>.constant(10),
-                   currentValue: Binding<Float>.constant(5))
+        FormSliderView(minValue: Binding<Float>.constant(4),
+                       maxValue: Binding<Float>.constant(10),
+                       currentValue: Binding<Float>.constant(5))
     }
 }
