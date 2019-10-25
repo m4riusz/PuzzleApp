@@ -26,3 +26,6 @@
 "Play title" = "Map";
 "About" = "About";
 "About title" = "About app";
+
+/* Puzzle map game */
+"Map not selected" = "Map not selected";

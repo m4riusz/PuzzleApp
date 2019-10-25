@@ -9,15 +9,23 @@
 import SwiftUI
 
 struct PuzzleMapGameView: View {
+    @ObservedObject var viewModel: PuzzleMapGameViewModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello World!"/*@END_MENU_TOKEN@*/)
+        PuzzleMapView(puzzleMap: self.viewModel.puzzleMap)
+            .padding()
             .navigationBarItems(trailing: HStack {
-                NavigationBarItem(imageName: "gobackward",
-                                  enabled: true) {
+                NavigationBarItem(imageName: self.viewModel.preview ? "eye.slash" : "eye",
+                                  enabled: self.viewModel.puzzleMap != nil) {
+                                    self.viewModel.togglePreview()
                                     
                 }
+                NavigationBarItem(imageName: "gobackward",
+                                  enabled: self.viewModel.puzzleMap != nil) {
+                                    self.viewModel.shuffleMap()
+                }
                 NavigationBarItem(imageName: "square.and.pencil",
-                                  enabled: false) {
+                                  enabled: self.viewModel.puzzleMap != nil) {
                                     
                 }
                 NavigationBarItem(imageName: "plus",
@@ -30,6 +38,6 @@ struct PuzzleMapGameView: View {
 
 struct PuzzleMapGameView_Previews: PreviewProvider {
     static var previews: some View {
-        PuzzleMapGameView()
+        PuzzleMapGameView(viewModel: PuzzleMapGameViewModel())
     }
 }

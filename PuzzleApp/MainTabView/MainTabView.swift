@@ -14,7 +14,7 @@ struct MainTabView: View {
     var body: some View {
         TabView(selection: self.$selectedItem) {
             NavigationView {
-                PuzzleMapGameView()
+                PuzzleMapGameView(viewModel: PuzzleMapGameViewModel())
                     .navigationBarTitle("Play title")
             }.tabItem {
                 TabViewItem(title: "Play",

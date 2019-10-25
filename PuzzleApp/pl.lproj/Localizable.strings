@@ -26,3 +26,6 @@
 "Play title" = "Plansza";
 "About" = "Info";
 "About title" = "Info o aplikacji";
+
+/* Puzzle map game */
+"Map not selected" = "Nie wybrano żadnej planszy";

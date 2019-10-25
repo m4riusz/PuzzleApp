@@ -7,8 +7,10 @@
 //
 
 import Foundation
+import UIKit
 
 struct Puzzle {
     let numer: Int
-    let image: Data
+    let preview: Bool
+    let image: UIImage
 }

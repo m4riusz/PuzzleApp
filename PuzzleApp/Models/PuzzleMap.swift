@@ -19,5 +19,5 @@ struct PuzzleMap {
     let numberOfColumns: Int
     let maxNumberOfColumns: Int
     let image: UIImage?
-    let puzzles: [Puzzle]
+    let puzzles: [[Puzzle]]
 }
