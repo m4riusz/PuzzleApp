@@ -13,28 +13,32 @@ struct PuzzleMapGameView: View {
     @ObservedObject var viewModel: PuzzleMapGameViewModel
     
     var body: some View {
-        PuzzleMapView(puzzleMap: self.viewModel.puzzleMap)
+        PuzzleMapView(puzzleMap: self.viewModel.puzzleMap,
+                      onPuzzleLongPressed: { self.viewModel.togglePreview() })
             .padding()
-            .navigationBarItems(trailing: HStack {
-                NavigationBarItem(imageName: self.viewModel.preview ? "eye.slash" : "eye",
-                                  enabled: self.viewModel.puzzleMap != nil) {
-                                    self.viewModel.togglePreview()
-                }
-                NavigationBarItem(imageName: "gobackward",
-                                  enabled: self.viewModel.puzzleMap != nil) {
-                                    self.viewModel.shuffleMap()
-                }
-                NavigationBarItem(imageName: "square.and.pencil",
+            .navigationBarTitle("Play title",
+                                displayMode: .inline)
+            .navigationBarItems(leading: HStack {
+                NavigationBarItem(imageName: "list.bullet",
                                   enabled: self.viewModel.puzzleMap != nil) {
                                     
                 }
-                NavigationLink(destination: PuzzleMapForm(puzzleMapFormViewModel:
-                    PuzzleMapFormViewModel(puzzleSettings: self.puzzleSettings,
-                                           operationType: .create(puzzleMap: PuzzleMap.fromSettings(self.puzzleSettings))))) {
-                                            Image(systemName: "plus")
-                                                .font(.title)
-                                                .padding(5)
-                }
+                }, trailing: HStack {
+                    NavigationBarItem(imageName: "shuffle",
+                                      enabled: self.viewModel.puzzleMap != nil) {
+                                        self.viewModel.shuffleMap()
+                    }
+                    NavigationBarItem(imageName: "square.and.pencil",
+                                      enabled: self.viewModel.puzzleMap != nil) {
+                                        
+                    }
+                    NavigationLink(destination: PuzzleMapForm(puzzleMapFormViewModel:
+                        PuzzleMapFormViewModel(puzzleSettings: self.puzzleSettings,
+                                               operationType: .create(puzzleMap: PuzzleMap.fromSettings(self.puzzleSettings))))) {
+                                                Image(systemName: "plus")
+                                                    .font(.title)
+                                                    .padding(5)
+                    }
             })
     }
 }

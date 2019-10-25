@@ -17,7 +17,6 @@ struct MainTabView: View {
             NavigationView {
                 PuzzleMapGameView(puzzleSettings: self.puzzleSettings,
                                   viewModel: PuzzleMapGameViewModel())
-                    .navigationBarTitle("Play title")
             }.tabItem {
                 TabViewItem(title: "Play",
                             imageName: self.selectedItem == 0 ? "play.circle.fill" : "play.circle")

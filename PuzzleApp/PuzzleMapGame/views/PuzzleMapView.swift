@@ -10,14 +10,15 @@ import SwiftUI
 
 struct PuzzleMapView: View {
     let puzzleMap: PuzzleMap?
+    let onPuzzleLongPressed: () -> Void
     var body: some View {
         VStack {
             if self.puzzleMap != nil {
                 ForEach (0..<self.puzzleMap!.numberOfRows, id: \.self) { row in
                     HStack {
                         ForEach (0..<self.puzzleMap!.numberOfColumns, id: \.self) { column in
-                            PuzzleView(puzzle:
-                                self.puzzleMap!.puzzles[row][column])
+                            PuzzleView(puzzle: self.puzzleMap!.puzzles[row][column])
+                                .onLongPressGesture { self.onPuzzleLongPressed() }
                         }
                     }
                 }
@@ -56,6 +57,7 @@ struct PuzzleMapView_Previews: PreviewProvider {
                                                   image: UIImage(named: "AppIcon"),
                                                   puzzles: [[puzzle0, puzzle1],
                                                             [puzzle2, puzzle3],
-                                                            [puzzle4, puzzle5]]))
+                                                            [puzzle4, puzzle5]]),
+                             onPuzzleLongPressed: {})
     }
 }
