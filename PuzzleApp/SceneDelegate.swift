@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate {
             return
         }
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = UIHostingController(rootView: MainView())
+        window.rootViewController = UIHostingController(rootView: MainTabView())
         self.window = window
         window.makeKeyAndVisible()
     }

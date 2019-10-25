@@ -5,6 +5,8 @@
   Created by Mariusz Sut on 24/10/2019.
   Copyright © 2019 Mariusz Sut. All rights reserved.
 */
+
+/* Puzzle map form */
 "Name" = "Name";
 "Number of rows" = "Number of rows";
 "Number of columns" = "Number of columns";
@@ -18,3 +20,9 @@
 "Image source" = "Image source";
 "Camera" = "Take picture";
 "Library" = "Photo library";
+
+/* Main tab view */
+"Play" = "Play";
+"Play title" = "Map";
+"About" = "About";
+"About title" = "About app";
