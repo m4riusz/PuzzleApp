@@ -12,7 +12,7 @@ struct FormSectionTitle: View {
     let text: String
     
     var body: some View {
-        Text(LocalizedStringKey(text))
+        Text(LocalizedStringKey(self.text))
             .font(.body)
             .fontWeight(.regular)
     }

@@ -21,14 +21,14 @@ struct FormImagePickerView: View {
                     .scaledToFit()
                     .clipped()
             }
-            Button(action: action,
+            Button(action: self.action,
                    label: {
                     VStack {
-                        if image == nil {
+                        if self.image == nil {
                             Image(systemName: "photo")
                                 .font(.largeTitle)
                         }
-                        Text(text)
+                        Text(self.text)
                             .font(.body)
                             .fontWeight(.semibold)
                         
@@ -36,6 +36,7 @@ struct FormImagePickerView: View {
                             maxWidth: .infinity,
                             alignment: .center)
             })
+                .padding([.top], 5)
         }
         .padding([.top,.bottom], 10)
     }

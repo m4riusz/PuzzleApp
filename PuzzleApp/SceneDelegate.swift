@@ -19,8 +19,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate {
         guard let windowScene = scene as? UIWindowScene else {
             return
         }
+        let puzzleSettings = PuzzleSettings(minNumberOfRows: 4,
+                                            maxNumberOfRows: 12,
+                                            minNumberOfColumns: 4,
+                                            maxNumberOfColumns: 12)
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = UIHostingController(rootView: MainView())
+        window.rootViewController = UIHostingController(rootView: MainTabView(puzzleSettings: puzzleSettings))
         self.window = window
         window.makeKeyAndVisible()
     }
