@@ -36,12 +36,8 @@ final class PuzzleMapGameViewModel: ObservableObject {
                              image: UIImage(named: "AppIcon")!)
         self.puzzleMap = PuzzleMap(id: 1,
                                    name: "Puzzle",
-                                   minNumerOfRows: 1,
                                    numberOfRows: 3,
-                                   maxNumberOfRows: 2,
-                                   minNumberOfColumns: 1,
                                    numberOfColumns: 2,
-                                   maxNumberOfColumns: 2,
                                    image: UIImage(named: "AppIcon"),
                                    puzzles: [[puzzle0, puzzle1],
                                              [puzzle2, puzzle3],
@@ -56,12 +52,8 @@ final class PuzzleMapGameViewModel: ObservableObject {
         let mixed = joinedElements.shuffled().chunks(map.numberOfColumns)
         self.puzzleMap = PuzzleMap(id: map.id,
                                    name: map.name,
-                                   minNumerOfRows: map.minNumerOfRows,
                                    numberOfRows: map.numberOfRows,
-                                   maxNumberOfRows: map.maxNumberOfRows,
-                                   minNumberOfColumns: map.minNumberOfColumns,
                                    numberOfColumns: map.numberOfColumns,
-                                   maxNumberOfColumns: map.maxNumberOfColumns,
                                    image: map.image,
                                    puzzles: mixed)
     }

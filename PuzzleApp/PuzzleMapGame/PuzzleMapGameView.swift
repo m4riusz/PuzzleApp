@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct PuzzleMapGameView: View {
+    let puzzleSettings: PuzzleSettings
     @ObservedObject var viewModel: PuzzleMapGameViewModel
     
     var body: some View {
@@ -18,7 +19,6 @@ struct PuzzleMapGameView: View {
                 NavigationBarItem(imageName: self.viewModel.preview ? "eye.slash" : "eye",
                                   enabled: self.viewModel.puzzleMap != nil) {
                                     self.viewModel.togglePreview()
-                                    
                 }
                 NavigationBarItem(imageName: "gobackward",
                                   enabled: self.viewModel.puzzleMap != nil) {
@@ -28,9 +28,12 @@ struct PuzzleMapGameView: View {
                                   enabled: self.viewModel.puzzleMap != nil) {
                                     
                 }
-                NavigationBarItem(imageName: "plus",
-                                  enabled: true) {
-                                    
+                NavigationLink(destination: PuzzleMapForm(puzzleMapFormViewModel:
+                    PuzzleMapFormViewModel(puzzleSettings: self.puzzleSettings,
+                                           operationType: .create(puzzleMap: PuzzleMap.fromSettings(self.puzzleSettings))))) {
+                                            Image(systemName: "plus")
+                                                .font(.title)
+                                                .padding(5)
                 }
             })
     }
@@ -38,6 +41,10 @@ struct PuzzleMapGameView: View {
 
 struct PuzzleMapGameView_Previews: PreviewProvider {
     static var previews: some View {
-        PuzzleMapGameView(viewModel: PuzzleMapGameViewModel())
+        PuzzleMapGameView(puzzleSettings: PuzzleSettings(minNumberOfRows: 4,
+                                                         maxNumberOfRows: 10,
+                                                         minNumberOfColumns: 4,
+                                                         maxNumberOfColumns: 10),
+                          viewModel: PuzzleMapGameViewModel())
     }
 }

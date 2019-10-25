@@ -39,57 +39,42 @@ enum PuzzleFormOperationType: Equatable {
 
 final class PuzzleMapFormViewModel: ObservableObject {
     @Published var name: String
-    @Published var minNumberOfRows: Float
-    @Published var numberOfRows: Float
-    @Published var maxNumberOfRows: Float
-    @Published var minNumberOfColumns: Float
-    @Published var numberOfColumns: Float
-    @Published var maxNumberOfColumns: Float
+    @Published var numberOfRows: Int
+    @Published var numberOfColumns: Int
     @Published var image: UIImage?
     @Published var isFormValid: Bool = false
     @Published var operationType: PuzzleFormOperationType
+    let puzzleSettings: PuzzleSettings
     private let cancelBag = CancelBag()
     
-    init(operationType: PuzzleFormOperationType) {
+    init(puzzleSettings: PuzzleSettings,
+         operationType: PuzzleFormOperationType) {
+        self.puzzleSettings = puzzleSettings
         self.operationType = operationType
         switch operationType {
         case .create(let puzzleMap):
             self.name = puzzleMap.name
-            self.minNumberOfRows = Float(puzzleMap.minNumerOfRows)
-            self.numberOfRows = Float(puzzleMap.numberOfRows)
-            self.maxNumberOfRows = Float(puzzleMap.maxNumberOfRows)
-            self.minNumberOfColumns = Float(puzzleMap.minNumberOfColumns)
-            self.numberOfColumns = Float(puzzleMap.numberOfColumns)
-            self.maxNumberOfColumns = Float(puzzleMap.maxNumberOfColumns)
+            self.numberOfRows = puzzleMap.numberOfRows
+            self.numberOfColumns = puzzleMap.numberOfColumns
             self.image = puzzleMap.image
         case .edit(let puzzleMap):
             self.name = puzzleMap.name
-            self.minNumberOfRows = Float(puzzleMap.minNumerOfRows)
-            self.numberOfRows = Float(puzzleMap.numberOfRows)
-            self.maxNumberOfRows = Float(puzzleMap.maxNumberOfRows)
-            self.minNumberOfColumns = Float(puzzleMap.minNumberOfColumns)
-            self.numberOfColumns = Float(puzzleMap.numberOfColumns)
-            self.maxNumberOfColumns = Float(puzzleMap.maxNumberOfColumns)
+            self.numberOfRows = puzzleMap.numberOfRows
+            self.numberOfColumns = puzzleMap.numberOfColumns
             self.image = puzzleMap.image
         }
         self.initBindings()
     }
     
     private func initBindings() {
-        let numberOfRowsPubliser = Publishers.CombineLatest3(self.$minNumberOfRows,
-                                                             self.$maxNumberOfRows,
-                                                             self.$numberOfRows)
-        let numberOfColumnsPubliser = Publishers.CombineLatest3(self.$minNumberOfColumns,
-                                                                self.$maxNumberOfColumns,
-                                                                self.$numberOfColumns)
         Publishers.CombineLatest4(self.$name,
-                                  numberOfRowsPubliser,
-                                  numberOfColumnsPubliser,
+                                  self.$numberOfRows,
+                                  self.$numberOfColumns,
                                   self.$image)
-            .map { name, rowConfig, columnConfig, image in
+            .map { [unowned self] name, rows, columns, image in
                 return !name.isEmpty &&
-                    rowConfig.0...rowConfig.1 ~= rowConfig.2 &&
-                    columnConfig.0...columnConfig.1 ~= columnConfig.2 &&
+                    self.puzzleSettings.minNumberOfRows...self.puzzleSettings.maxNumberOfRows ~= rows &&
+                    self.puzzleSettings.minNumberOfColumns...self.puzzleSettings.maxNumberOfColumns ~= columns &&
                     image != nil
         }
         .assign(to: \.isFormValid, on: self)

@@ -9,12 +9,14 @@
 import SwiftUI
 
 struct MainTabView: View {
+    let puzzleSettings: PuzzleSettings
     @State var selectedItem = 0
     
     var body: some View {
         TabView(selection: self.$selectedItem) {
             NavigationView {
-                PuzzleMapGameView(viewModel: PuzzleMapGameViewModel())
+                PuzzleMapGameView(puzzleSettings: self.puzzleSettings,
+                                  viewModel: PuzzleMapGameViewModel())
                     .navigationBarTitle("Play title")
             }.tabItem {
                 TabViewItem(title: "Play",
@@ -35,6 +37,9 @@ struct MainTabView: View {
 
 struct MainTabView_Previews: PreviewProvider {
     static var previews: some View {
-        MainTabView()
+        MainTabView(puzzleSettings: PuzzleSettings(minNumberOfRows: 4,
+                                                   maxNumberOfRows: 10,
+                                                   minNumberOfColumns: 4,
+                                                   maxNumberOfColumns: 10))
     }
 }

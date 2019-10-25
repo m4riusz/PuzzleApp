@@ -12,12 +12,17 @@ import UIKit
 struct PuzzleMap {
     let id: Int
     let name: String
-    let minNumerOfRows: Int
     let numberOfRows: Int
-    let maxNumberOfRows: Int
-    let minNumberOfColumns: Int
     let numberOfColumns: Int
-    let maxNumberOfColumns: Int
     let image: UIImage?
     let puzzles: [[Puzzle]]
+    
+    static func fromSettings(_ puzzleSettings: PuzzleSettings) -> PuzzleMap {
+        PuzzleMap(id: 0,
+                  name: "",
+                  numberOfRows: puzzleSettings.minNumberOfRows,
+                  numberOfColumns: puzzleSettings.minNumberOfColumns,
+                  image: nil,
+                  puzzles: [])
+    }
 }

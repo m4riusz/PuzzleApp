@@ -51,12 +51,8 @@ struct PuzzleMapView_Previews: PreviewProvider {
                              image: UIImage(named: "AppIcon")!)
         return PuzzleMapView(puzzleMap: PuzzleMap(id: 1,
                                                   name: "Puzzle",
-                                                  minNumerOfRows: 1,
                                                   numberOfRows: 3,
-                                                  maxNumberOfRows: 2,
-                                                  minNumberOfColumns: 1,
                                                   numberOfColumns: 2,
-                                                  maxNumberOfColumns: 2,
                                                   image: UIImage(named: "AppIcon"),
                                                   puzzles: [[puzzle0, puzzle1],
                                                             [puzzle2, puzzle3],

@@ -9,24 +9,23 @@
 import SwiftUI
 
 struct FormSliderView: View {
-    @Binding var minValue: Float
-    @Binding var maxValue: Float
-    @Binding var currentValue: Float
+    @Binding var minValue: Int
+    @Binding var maxValue: Int
+    @Binding var currentValue: Int
     
     var body: some View {
         VStack {
-            Slider(value: $currentValue,
-                   in: minValue...maxValue,
+            Slider(value: self.$currentValue.double,
+                   in: self.minValue.double...self.maxValue.double,
                    step: 1,
-                   onEditingChanged: { r in },
-                   minimumValueLabel: Text("\(Int(minValue))")
+                   minimumValueLabel: Text("\(self.minValue)")
                     .font(.body),
-                   maximumValueLabel: Text("\(Int(maxValue))")
+                   maximumValueLabel: Text("\(self.maxValue)")
                     .font(.body)) {
                         Text("")
             }
             .padding([.top], 5)
-            Text("\(Int(currentValue))")
+            Text("\(self.currentValue)")
                 .font(.callout)
                 .fontWeight(.light)
         }
@@ -35,8 +34,8 @@ struct FormSliderView: View {
 
 struct FormSliderView_Previews: PreviewProvider {
     static var previews: some View {
-        FormSliderView(minValue: Binding<Float>.constant(4),
-                       maxValue: Binding<Float>.constant(10),
-                       currentValue: Binding<Float>.constant(5))
+        FormSliderView(minValue: .constant(4),
+                       maxValue: .constant(10),
+                       currentValue: .constant(5))
     }
 }
