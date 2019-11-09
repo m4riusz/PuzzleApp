@@ -29,3 +29,6 @@
 
 /* Puzzle map game */
 "Map not selected" = "Nie wybrano żadnej planszy";
+
+/* Puzzle list */
+"Available maps" = "Dostępne mapy";

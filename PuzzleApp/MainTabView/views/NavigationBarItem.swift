@@ -17,7 +17,6 @@ struct NavigationBarItem: View {
         Button(action: self.action,
                label: {
                 Image(systemName: self.imageName)
-                    .font(.title)
         })
             .padding(5)
             .disabled(!self.enabled)

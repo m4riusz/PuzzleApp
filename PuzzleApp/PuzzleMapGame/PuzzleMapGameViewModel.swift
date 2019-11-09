@@ -9,53 +9,42 @@
 import Combine
 import UIKit
 import Foundation
+import CancelBag
 
 final class PuzzleMapGameViewModel: ObservableObject {
     
     @Published private (set) var preview: Bool = false
     @Published private (set) var puzzleMap: PuzzleMap?
+    private let cancelBag = CancelBag()
     
-    init() {
-        let puzzle0 = Puzzle(numer: 0,
-                             preview: true,
-                             image: UIImage(named: "AppIcon")!)
-        let puzzle1 = Puzzle(numer: 1,
-                             preview: false,
-                             image: UIImage(named: "AppIcon")!)
-        let puzzle2 = Puzzle(numer: 2,
-                             preview: true,
-                             image: UIImage(named: "AppIcon")!)
-        let puzzle3 = Puzzle(numer: 3,
-                             preview: true,
-                             image: UIImage(named: "AppIcon")!)
-        let puzzle4 = Puzzle(numer: 4,
-                             preview: true,
-                             image: UIImage(named: "AppIcon")!)
-        let puzzle5 = Puzzle(numer: 5,
-                             preview: true,
-                             image: UIImage(named: "AppIcon")!)
-        self.puzzleMap = PuzzleMap(id: 1,
-                                   name: "Puzzle",
-                                   numberOfRows: 3,
-                                   numberOfColumns: 2,
-                                   image: UIImage(named: "AppIcon"),
-                                   puzzles: [[puzzle0, puzzle1],
-                                             [puzzle2, puzzle3],
-                                             [puzzle4, puzzle5]])
+    private let puzzleMapRepository: PuzzleMapRepositoryProtocol
+    
+    init(puzzleMapRepository: PuzzleMapRepositoryProtocol) {
+        self.puzzleMapRepository = puzzleMapRepository
+        self.initBindings()
+    }
+    
+    private func initBindings() {
+        self.puzzleMapRepository.getSelectedMap()
+            .assign(to: \.puzzleMap, on: self)
+            .cancel(with: self.cancelBag)
+    }
+    
+    func onPuzzleTap(row: Int,
+                     column: Int) {
+        guard let mapId = self.puzzleMap?.id else {
+            return
+        }
+        self.puzzleMapRepository.tapOnPuzzle(mapId: mapId,
+                                             row: row,
+                                             column: column)
     }
     
     func shuffleMap() {
-        guard let map = self.puzzleMap else {
+        guard let mapId = self.puzzleMap?.id else {
             return
         }
-        let joinedElements = map.puzzles.reduce([Puzzle](), { $0 + $1 })
-        let mixed = joinedElements.shuffled().chunks(map.numberOfColumns)
-        self.puzzleMap = PuzzleMap(id: map.id,
-                                   name: map.name,
-                                   numberOfRows: map.numberOfRows,
-                                   numberOfColumns: map.numberOfColumns,
-                                   image: map.image,
-                                   puzzles: mixed)
+        self.puzzleMapRepository.shuffleMapWithId(mapId)
     }
     
     func togglePreview() {
