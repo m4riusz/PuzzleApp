@@ -82,6 +82,7 @@ struct MapForm_Previews: PreviewProvider {
                                                          minNumberOfColumns: 4,
                                                          maxNumberOfColumns: 12),
                                    operationType: .create(puzzleMap: .init(id: 0,
+                                                                           selected: true,
                                                                            name: "",
                                                                            numberOfRows: 4,
                                                                            numberOfColumns: 4,

@@ -13,6 +13,9 @@
 		6F1BBE6F23602FF80044CC09 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F1BBE6D23602FF80044CC09 /* LaunchScreen.storyboard */; };
 		6F1BBE7A23602FF80044CC09 /* PuzzleAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BBE7923602FF80044CC09 /* PuzzleAppTests.swift */; };
 		6F1BBE8523602FF80044CC09 /* PuzzleAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BBE8423602FF80044CC09 /* PuzzleAppUITests.swift */; };
+		6F26B69E2376E7E700021624 /* PuzzleMapListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F26B69D2376E7E700021624 /* PuzzleMapListViewModel.swift */; };
+		6F26B6A12376E8A300021624 /* PuzzleMapListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F26B6A02376E8A300021624 /* PuzzleMapListView.swift */; };
+		6F26B6A32376E98600021624 /* PuzzleMapListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F26B6A22376E98600021624 /* PuzzleMapListItemView.swift */; };
 		6F447F6D236194D900F4FC68 /* PuzzleMapFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F447F6C236194D900F4FC68 /* PuzzleMapFormViewModel.swift */; };
 		6F447F70236195A400F4FC68 /* PuzzleMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F447F6F236195A400F4FC68 /* PuzzleMap.swift */; };
 		6F447F722361968900F4FC68 /* Puzzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F447F712361968900F4FC68 /* Puzzle.swift */; };
@@ -69,6 +72,9 @@
 		6F1BBE8023602FF80044CC09 /* PuzzleAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PuzzleAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F1BBE8423602FF80044CC09 /* PuzzleAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleAppUITests.swift; sourceTree = "<group>"; };
 		6F1BBE8623602FF80044CC09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6F26B69D2376E7E700021624 /* PuzzleMapListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleMapListViewModel.swift; sourceTree = "<group>"; };
+		6F26B6A02376E8A300021624 /* PuzzleMapListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleMapListView.swift; sourceTree = "<group>"; };
+		6F26B6A22376E98600021624 /* PuzzleMapListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleMapListItemView.swift; sourceTree = "<group>"; };
 		6F447F6C236194D900F4FC68 /* PuzzleMapFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleMapFormViewModel.swift; sourceTree = "<group>"; };
 		6F447F6F236195A400F4FC68 /* PuzzleMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleMap.swift; sourceTree = "<group>"; };
 		6F447F712361968900F4FC68 /* Puzzle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Puzzle.swift; sourceTree = "<group>"; };
@@ -150,6 +156,7 @@
 				6F447F6E2361958100F4FC68 /* Models */,
 				6F8C5CDF2360B96D00F62947 /* Views */,
 				6F8C5CDC2360ACCE00F62947 /* PuzzleMapForm */,
+				6F26B69C2376E74400021624 /* PuzzleMapList */,
 				6F4E4A522362E26E0094E02F /* PuzzleMapGame */,
 				6F5E7D562360741B001AA9FF /* MainTabView */,
 				6F1BBE6423602FF50044CC09 /* SceneDelegate.swift */,
@@ -186,6 +193,24 @@
 				6F1BBE8623602FF80044CC09 /* Info.plist */,
 			);
 			path = PuzzleAppUITests;
+			sourceTree = "<group>";
+		};
+		6F26B69C2376E74400021624 /* PuzzleMapList */ = {
+			isa = PBXGroup;
+			children = (
+				6F26B69F2376E89300021624 /* views */,
+				6F26B69D2376E7E700021624 /* PuzzleMapListViewModel.swift */,
+			);
+			path = PuzzleMapList;
+			sourceTree = "<group>";
+		};
+		6F26B69F2376E89300021624 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				6F26B6A02376E8A300021624 /* PuzzleMapListView.swift */,
+				6F26B6A22376E98600021624 /* PuzzleMapListItemView.swift */,
+			);
+			path = views;
 			sourceTree = "<group>";
 		};
 		6F447F6E2361958100F4FC68 /* Models */ = {
@@ -230,7 +255,6 @@
 			isa = PBXGroup;
 			children = (
 				6F4E4A5D2362FA560094E02F /* views */,
-				6F4E4A532362E2AD0094E02F /* PuzzleMapGameView.swift */,
 				6F4E4A64236305AE0094E02F /* PuzzleMapGameViewModel.swift */,
 				6F6BCC222376D5A90039757D /* PuzzleMapRepository.swift */,
 			);
@@ -259,6 +283,7 @@
 			children = (
 				6F4E4A5E2362FA6B0094E02F /* PuzzleView.swift */,
 				6F4E4A602362FF580094E02F /* PuzzleMapView.swift */,
+				6F4E4A532362E2AD0094E02F /* PuzzleMapGameView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -457,10 +482,13 @@
 				6F447F6D236194D900F4FC68 /* PuzzleMapFormViewModel.swift in Sources */,
 				6F447F7E2361ADAC00F4FC68 /* ImagePickerView.swift in Sources */,
 				6F5E7D5A23607444001AA9FF /* MainTabView.swift in Sources */,
+				6F26B6A32376E98600021624 /* PuzzleMapListItemView.swift in Sources */,
 				6F8C5CDE2360ACF700F62947 /* PuzzleMapForm.swift in Sources */,
 				6FA4757B2363240100A481C9 /* ArrayExtension.swift in Sources */,
 				6F447F832361B99100F4FC68 /* FormImagePickerView.swift in Sources */,
 				6F4E4A6D236311F50094E02F /* PuzzleSettings.swift in Sources */,
+				6F26B69E2376E7E700021624 /* PuzzleMapListViewModel.swift in Sources */,
+				6F26B6A12376E8A300021624 /* PuzzleMapListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -53,6 +53,7 @@ struct PuzzleMapView_Previews: PreviewProvider {
                              preview: true,
                              image: UIImage(named: "AppIcon")!)
         return PuzzleMapView(puzzleMap: .init(id: 1,
+                                              selected: true,
                                               name: "Puzzle",
                                               numberOfRows: 3,
                                               numberOfColumns: 2,

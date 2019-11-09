@@ -54,6 +54,7 @@ struct PuzzleMapRepository: PuzzleMapRepositoryProtocol {
                              preview: true,
                              image: UIImage(named: "AppIcon")!)
         let puzzleMap = PuzzleMap(id: 1,
+                                  selected: true,
                                   name: "Puzzle",
                                   numberOfRows: 3,
                                   numberOfColumns: 2,
@@ -66,6 +67,51 @@ struct PuzzleMapRepository: PuzzleMapRepositoryProtocol {
     
     
     func getAllMaps() -> AnyPublisher<[PuzzleMap], Never> {
-        return Just([]).eraseToAnyPublisher()
+        let puzzle0 = Puzzle(numer: 0,
+                             preview: true,
+                             image: UIImage(named: "AppIcon")!)
+        let puzzle1 = Puzzle(numer: 1,
+                             preview: false,
+                             image: UIImage(named: "AppIcon")!)
+        let puzzle2 = Puzzle(numer: 2,
+                             preview: true,
+                             image: UIImage(named: "AppIcon")!)
+        let puzzle3 = Puzzle(numer: 3,
+                             preview: true,
+                             image: UIImage(named: "AppIcon")!)
+        let puzzle4 = Puzzle(numer: 4,
+                             preview: true,
+                             image: UIImage(named: "AppIcon")!)
+        let puzzle5 = Puzzle(numer: 5,
+                             preview: true,
+                             image: UIImage(named: "AppIcon")!)
+        let puzzleMap1 = PuzzleMap(id: 1,
+                                   selected: true,
+                                   name: "Puzzle 1",
+                                   numberOfRows: 3,
+                                   numberOfColumns: 2,
+                                   image: UIImage(named: "AppIcon"),
+                                   puzzles: [[puzzle0, puzzle1],
+                                             [puzzle2, puzzle3],
+                                             [puzzle4, puzzle5]])
+        let puzzleMap2 = PuzzleMap(id: 2,
+                                   selected: false,
+                                   name: "Puzzle 2",
+                                   numberOfRows: 2,
+                                   numberOfColumns: 3,
+                                   image: UIImage(named: "AppIcon"),
+                                   puzzles: [[puzzle0, puzzle1, puzzle2],
+                                             [puzzle5, puzzle4, puzzle3]])
+        let puzzleMap3 = PuzzleMap(id: 3,
+                                   selected: false,
+                                   name: "Puzzle 3",
+                                   numberOfRows: 3,
+                                   numberOfColumns: 3,
+                                   image: UIImage(named: "AppIcon"),
+                                   puzzles: [[puzzle0, puzzle1, puzzle2],
+                                             [puzzle4, puzzle5, puzzle1],
+                                             [puzzle2, puzzle3, puzzle4]])
+        
+        return Just([puzzleMap1, puzzleMap2, puzzleMap3]).eraseToAnyPublisher()
     }
 }

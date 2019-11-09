@@ -11,6 +11,7 @@ import UIKit
 
 struct PuzzleMap {
     let id: Int
+    let selected: Bool
     let name: String
     let numberOfRows: Int
     let numberOfColumns: Int
@@ -19,6 +20,7 @@ struct PuzzleMap {
     
     static func fromSettings(_ puzzleSettings: PuzzleSettings) -> PuzzleMap {
         .init(id: 0,
+              selected: false,
               name: "",
               numberOfRows: puzzleSettings.minNumberOfRows,
               numberOfColumns: puzzleSettings.minNumberOfColumns,
