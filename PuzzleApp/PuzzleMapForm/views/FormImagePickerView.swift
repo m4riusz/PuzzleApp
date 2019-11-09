@@ -46,6 +46,6 @@ struct FormImagePickerView_Previews: PreviewProvider {
     static var previews: some View {
         FormImagePickerView(text: "Save",
                             action: {},
-                            image: Binding<UIImage?>.constant(nil))
+                            image: .constant(nil))
     }
 }

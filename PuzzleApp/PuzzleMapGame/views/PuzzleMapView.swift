@@ -11,6 +11,7 @@ import SwiftUI
 struct PuzzleMapView: View {
     let puzzleMap: PuzzleMap?
     let onPuzzleLongPressed: () -> Void
+    let onPuzzleTap: (_ row: Int, _ column: Int) -> Void
     var body: some View {
         VStack {
             if self.puzzleMap != nil {
@@ -19,6 +20,7 @@ struct PuzzleMapView: View {
                         ForEach (0..<self.puzzleMap!.numberOfColumns, id: \.self) { column in
                             PuzzleView(puzzle: self.puzzleMap!.puzzles[row][column])
                                 .onLongPressGesture { self.onPuzzleLongPressed() }
+                                .onTapGesture { self.onPuzzleTap(row, column) }
                         }
                     }
                 }
@@ -50,14 +52,15 @@ struct PuzzleMapView_Previews: PreviewProvider {
         let puzzle5 = Puzzle(numer: 5,
                              preview: true,
                              image: UIImage(named: "AppIcon")!)
-        return PuzzleMapView(puzzleMap: PuzzleMap(id: 1,
-                                                  name: "Puzzle",
-                                                  numberOfRows: 3,
-                                                  numberOfColumns: 2,
-                                                  image: UIImage(named: "AppIcon"),
-                                                  puzzles: [[puzzle0, puzzle1],
-                                                            [puzzle2, puzzle3],
-                                                            [puzzle4, puzzle5]]),
-                             onPuzzleLongPressed: {})
+        return PuzzleMapView(puzzleMap: .init(id: 1,
+                                              name: "Puzzle",
+                                              numberOfRows: 3,
+                                              numberOfColumns: 2,
+                                              image: UIImage(named: "AppIcon"),
+                                              puzzles: [[puzzle0, puzzle1],
+                                                        [puzzle2, puzzle3],
+                                                        [puzzle4, puzzle5]]),
+                             onPuzzleLongPressed: {},
+                             onPuzzleTap: {_, _ in })
     }
 }

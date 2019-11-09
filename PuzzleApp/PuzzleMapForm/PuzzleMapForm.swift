@@ -77,15 +77,15 @@ struct PuzzleMapForm: View {
 struct MapForm_Previews: PreviewProvider {
     static var previews: some View {
         PuzzleMapForm(puzzleMapFormViewModel:
-            PuzzleMapFormViewModel(puzzleSettings: PuzzleSettings(minNumberOfRows: 4,
-                                                                  maxNumberOfRows: 12,
-                                                                  minNumberOfColumns: 4,
-                                                                  maxNumberOfColumns: 12),
-                                   operationType: .create(puzzleMap: PuzzleMap(id: 0,
-                                                                               name: "",
-                                                                               numberOfRows: 4,
-                                                                               numberOfColumns: 4,
-                                                                               image: nil,
-                                                                               puzzles: []))))
+            PuzzleMapFormViewModel(puzzleSettings: .init(minNumberOfRows: 4,
+                                                         maxNumberOfRows: 12,
+                                                         minNumberOfColumns: 4,
+                                                         maxNumberOfColumns: 12),
+                                   operationType: .create(puzzleMap: .init(id: 0,
+                                                                           name: "",
+                                                                           numberOfRows: 4,
+                                                                           numberOfColumns: 4,
+                                                                           image: nil,
+                                                                           puzzles: []))))
     }
 }

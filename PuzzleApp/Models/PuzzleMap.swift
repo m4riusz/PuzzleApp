@@ -18,11 +18,11 @@ struct PuzzleMap {
     let puzzles: [[Puzzle]]
     
     static func fromSettings(_ puzzleSettings: PuzzleSettings) -> PuzzleMap {
-        PuzzleMap(id: 0,
-                  name: "",
-                  numberOfRows: puzzleSettings.minNumberOfRows,
-                  numberOfColumns: puzzleSettings.minNumberOfColumns,
-                  image: nil,
-                  puzzles: [])
+        .init(id: 0,
+              name: "",
+              numberOfRows: puzzleSettings.minNumberOfRows,
+              numberOfColumns: puzzleSettings.minNumberOfColumns,
+              image: nil,
+              puzzles: [])
     }
 }

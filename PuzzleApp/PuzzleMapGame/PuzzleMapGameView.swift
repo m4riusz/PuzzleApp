@@ -14,7 +14,8 @@ struct PuzzleMapGameView: View {
     
     var body: some View {
         PuzzleMapView(puzzleMap: self.viewModel.puzzleMap,
-                      onPuzzleLongPressed: { self.viewModel.togglePreview() })
+                      onPuzzleLongPressed: { self.viewModel.togglePreview() },
+                      onPuzzleTap: { self.viewModel.onPuzzleTap(row: $0, column: $1) })
             .padding()
             .navigationBarTitle("Play title",
                                 displayMode: .inline)
@@ -33,11 +34,11 @@ struct PuzzleMapGameView: View {
                                         
                     }
                     NavigationLink(destination: PuzzleMapForm(puzzleMapFormViewModel:
-                        PuzzleMapFormViewModel(puzzleSettings: self.puzzleSettings,
-                                               operationType: .create(puzzleMap: PuzzleMap.fromSettings(self.puzzleSettings))))) {
-                                                Image(systemName: "plus")
-                                                    .font(.title)
-                                                    .padding(5)
+                        .init(puzzleSettings: self.puzzleSettings,
+                              operationType: .create(puzzleMap: .fromSettings(self.puzzleSettings))))) {
+                                Image(systemName: "plus")
+                                    .font(.title)
+                                    .padding(5)
                     }
             })
     }
@@ -45,10 +46,10 @@ struct PuzzleMapGameView: View {
 
 struct PuzzleMapGameView_Previews: PreviewProvider {
     static var previews: some View {
-        PuzzleMapGameView(puzzleSettings: PuzzleSettings(minNumberOfRows: 4,
-                                                         maxNumberOfRows: 10,
-                                                         minNumberOfColumns: 4,
-                                                         maxNumberOfColumns: 10),
-                          viewModel: PuzzleMapGameViewModel())
+        PuzzleMapGameView(puzzleSettings: .init(minNumberOfRows: 4,
+                                                maxNumberOfRows: 10,
+                                                minNumberOfColumns: 4,
+                                                maxNumberOfColumns: 10),
+                          viewModel: .init(puzzleMapRepository: PuzzleMapRepository()))
     }
 }

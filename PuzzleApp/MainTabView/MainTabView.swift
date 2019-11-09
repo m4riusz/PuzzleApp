@@ -16,7 +16,7 @@ struct MainTabView: View {
         TabView(selection: self.$selectedItem) {
             NavigationView {
                 PuzzleMapGameView(puzzleSettings: self.puzzleSettings,
-                                  viewModel: PuzzleMapGameViewModel())
+                                  viewModel: .init(puzzleMapRepository: PuzzleMapRepository()))
             }.tabItem {
                 TabViewItem(title: "Play",
                             imageName: self.selectedItem == 0 ? "play.circle.fill" : "play.circle")
@@ -36,9 +36,9 @@ struct MainTabView: View {
 
 struct MainTabView_Previews: PreviewProvider {
     static var previews: some View {
-        MainTabView(puzzleSettings: PuzzleSettings(minNumberOfRows: 4,
-                                                   maxNumberOfRows: 10,
-                                                   minNumberOfColumns: 4,
-                                                   maxNumberOfColumns: 10))
+        MainTabView(puzzleSettings: .init(minNumberOfRows: 4,
+                                          maxNumberOfRows: 10,
+                                          minNumberOfColumns: 4,
+                                          maxNumberOfColumns: 10))
     }
 }
