@@ -16,7 +16,17 @@ protocol PuzzleMapRepositoryProtocol {
     func tapOnPuzzle(mapId: Int,
                      row: Int,
                      column: Int)
+    func createMap(name: String,
+                   rows: Int,
+                   columns: Int,
+                   image: UIImage)
+    func updateMapById(_ mapId: Int,
+                       name: String,
+                       rows: Int,
+                       columns: Int,
+                       image: UIImage)
     func deleteMapById(_ mapId: Int)
+    func getPuzzleMapSettings() -> AnyPublisher<PuzzleSettings, Never>
     func getSelectedMap() -> AnyPublisher<PuzzleMap?, Never>
     func getAllMaps() -> AnyPublisher<[PuzzleMap], Never>
 }
@@ -35,8 +45,31 @@ struct PuzzleMapRepository: PuzzleMapRepositoryProtocol {
         
     }
     
+    func createMap(name: String,
+                   rows: Int,
+                   columns: Int,
+                   image: UIImage) {
+        
+    }
+    
+    func updateMapById(_ mapId: Int,
+                       name: String,
+                       rows: Int,
+                       columns: Int,
+                       image: UIImage) {
+        
+    }
+    
     func deleteMapById(_ mapId: Int) {
         
+    }
+    
+    func getPuzzleMapSettings() -> AnyPublisher<PuzzleSettings, Never> {
+        return Just(.init(minNumberOfRows: 4,
+                          maxNumberOfRows: 12,
+                          minNumberOfColumns: 4,
+                          maxNumberOfColumns: 12))
+            .eraseToAnyPublisher()
     }
     
     func getSelectedMap() -> AnyPublisher<PuzzleMap?, Never> {
@@ -67,7 +100,8 @@ struct PuzzleMapRepository: PuzzleMapRepositoryProtocol {
                                   puzzles: [[puzzle0, puzzle1],
                                             [puzzle2, puzzle3],
                                             [puzzle4, puzzle5]])
-        return Just(puzzleMap).eraseToAnyPublisher()
+        return Just(puzzleMap)
+            .eraseToAnyPublisher()
     }
     
     
@@ -117,6 +151,7 @@ struct PuzzleMapRepository: PuzzleMapRepositoryProtocol {
                                              [puzzle4, puzzle5, puzzle1],
                                              [puzzle2, puzzle3, puzzle4]])
         
-        return Just([puzzleMap1, puzzleMap2, puzzleMap3]).eraseToAnyPublisher()
+        return Just([puzzleMap1, puzzleMap2, puzzleMap3])
+            .eraseToAnyPublisher()
     }
 }

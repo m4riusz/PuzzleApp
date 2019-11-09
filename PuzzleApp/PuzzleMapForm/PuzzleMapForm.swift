@@ -9,8 +9,7 @@
 import SwiftUI
 
 struct PuzzleMapForm: View {
-    
-    @ObservedObject var puzzleMapFormViewModel: PuzzleMapFormViewModel
+    @ObservedObject var viewModel: PuzzleMapFormViewModel
     @State var isPresentingPicker: Bool = false
     @State var isPresentingPickerOptions: Bool = false
     @State var pickerType: UIImagePickerController.SourceType = .camera
@@ -18,39 +17,39 @@ struct PuzzleMapForm: View {
     var body: some View {
         Form {
             Section(header: FormSectionTitle(text: "Name")) {
-                TextField("", text: self.$puzzleMapFormViewModel.name)
+                TextField("", text: self.$viewModel.name)
             }
             Section(header: FormSectionTitle(text: "Number of rows")) {
-                FormSliderView(minValue: .constant(self.puzzleMapFormViewModel.puzzleSettings.minNumberOfRows),
-                               maxValue: .constant(self.puzzleMapFormViewModel.puzzleSettings.maxNumberOfRows),
-                               currentValue: self.$puzzleMapFormViewModel.numberOfRows)
+                FormSliderView(minValue: .constant(self.viewModel.minNumberOfRows),
+                               maxValue: .constant(self.viewModel.maxNumberOfRows),
+                               currentValue: self.$viewModel.numberOfRows)
             }
             Section(header: FormSectionTitle(text: "Number of columns")) {
-                FormSliderView(minValue: .constant(self.puzzleMapFormViewModel.puzzleSettings.minNumberOfColumns),
-                               maxValue: .constant(self.puzzleMapFormViewModel.puzzleSettings.maxNumberOfColumns),
-                               currentValue: self.$puzzleMapFormViewModel.numberOfColumns)
+                FormSliderView(minValue: .constant(self.viewModel.minNumberOfColumns),
+                               maxValue: .constant(self.viewModel.maxNumberOfColumns),
+                               currentValue: self.$viewModel.numberOfColumns)
             }
             Section(header: FormSectionTitle(text: "Image")) {
-                FormImagePickerView(text: self.puzzleMapFormViewModel.image == nil ? "Pick" : "Change",
+                FormImagePickerView(text: self.viewModel.image == nil ? "Pick" : "Change",
                                     action: { self.isPresentingPickerOptions.toggle() },
-                                    image: self.$puzzleMapFormViewModel.image)
+                                    image: self.$viewModel.image)
             }
             Section {
                 FormButton(text: "Save",
                            color: .systemBlue,
-                           enabled: self.puzzleMapFormViewModel.isFormValid) {
-                            
+                           enabled: self.viewModel.isFormValid) {
+                            self.viewModel.updateOrCreate()
                 }
-                if !self.puzzleMapFormViewModel.operationType.isCreateOption() {
+                if !self.viewModel.operationType.isCreateOption() {
                     FormButton(text: "Delete",
                                color: .systemRed,
                                enabled: true) {
-                                
+                                self.viewModel.delete()
                     }
                 }
             }
             .modifier(AdaptsToSoftwareKeyboard())
-            .navigationBarTitle(Text(self.puzzleMapFormViewModel.operationType.isCreateOption() ? "Create map" : "Edit map"),
+            .navigationBarTitle(Text(self.viewModel.operationType.isCreateOption() ? "Create map" : "Edit map"),
                                 displayMode: .inline)
                 .actionSheet(isPresented: self.$isPresentingPickerOptions, content: {
                     ActionSheet(title: Text("Image source"),
@@ -68,7 +67,7 @@ struct PuzzleMapForm: View {
                 }).sheet(isPresented: self.$isPresentingPicker, content: {
                     ImagePickerView(source: self.pickerType,
                                     isPresented: self.$isPresentingPicker,
-                                    image: self.$puzzleMapFormViewModel.image)
+                                    image: self.$viewModel.image)
                 })
         }
     }
@@ -76,17 +75,7 @@ struct PuzzleMapForm: View {
 
 struct MapForm_Previews: PreviewProvider {
     static var previews: some View {
-        PuzzleMapForm(puzzleMapFormViewModel:
-            PuzzleMapFormViewModel(puzzleSettings: .init(minNumberOfRows: 4,
-                                                         maxNumberOfRows: 12,
-                                                         minNumberOfColumns: 4,
-                                                         maxNumberOfColumns: 12),
-                                   operationType: .create(puzzleMap: .init(id: 0,
-                                                                           selected: true,
-                                                                           name: "",
-                                                                           numberOfRows: 4,
-                                                                           numberOfColumns: 4,
-                                                                           image: nil,
-                                                                           puzzles: []))))
+        PuzzleMapForm(viewModel: .init(puzzleMapRepository: PuzzleMapRepository(),
+                                       operationType: .create))
     }
 }

@@ -9,48 +9,43 @@
 import SwiftUI
 
 struct PuzzleMapGameView: View {
-    let puzzleSettings: PuzzleSettings
     @State var isPresentingList: Bool = false
     @ObservedObject var viewModel: PuzzleMapGameViewModel
     
     var body: some View {
-        PuzzleMapView(puzzleMap: self.viewModel.puzzleMap,
-                      onPuzzleLongPressed: { self.viewModel.togglePreview() },
-                      onPuzzleTap: { self.viewModel.onPuzzleTap(row: $0, column: $1) })
-            .padding()
-            .navigationBarTitle("Play title",
-                                displayMode: .inline)
-            .navigationBarItems(leading: HStack {
-                NavigationBarItem(imageName: "list.bullet",
-                                  enabled: self.viewModel.puzzleMap != nil) {
-                                    
-                }
-                }, trailing: HStack {
-                    NavigationBarItem(imageName: "shuffle",
+        NavigationView {
+            PuzzleMapView(puzzleMap: self.viewModel.puzzleMap,
+                          onPuzzleLongPressed: { self.viewModel.togglePreview() },
+                          onPuzzleTap: { self.viewModel.onPuzzleTap(row: $0, column: $1) })
+                .padding()
+                .navigationBarTitle("Play title",
+                                    displayMode: .inline)
+                .navigationBarItems(trailing: HStack {
+                    if self.viewModel.puzzleMap != nil {
+                        NavigationBarItem(imageName: "shuffle",
+                                          enabled: true) {
+                                            self.viewModel.shuffleMap()
+                        }
+                        NavigationLink(destination: PuzzleMapForm(viewModel:
+                            .init(puzzleMapRepository: PuzzleMapRepository(),
+                                  operationType: .edit(puzzleMap: self.viewModel.puzzleMap!)))) {
+                                    Image(systemName: "square.and.pencil")
+                        }
+                    }
+                    NavigationBarItem(imageName: "list.bullet",
                                       enabled: self.viewModel.puzzleMap != nil) {
-                                        self.viewModel.shuffleMap()
+                                        self.isPresentingList.toggle()
+                    }.sheet(isPresented: self.$isPresentingList) {
+                        PuzzleMapListView(isPresentingList: self.$isPresentingList,
+                                          viewModel: .init(puzzleMapRepository: PuzzleMapRepository()))
                     }
-                    NavigationBarItem(imageName: "square.and.pencil",
-                                      enabled: self.viewModel.puzzleMap != nil) {
-                                        
-                    }
-                    NavigationLink(destination: PuzzleMapForm(puzzleMapFormViewModel:
-                        .init(puzzleSettings: self.puzzleSettings,
-                              operationType: .create(puzzleMap: .fromSettings(self.puzzleSettings))))) {
-                                Image(systemName: "plus")
-                                    .font(.title)
-                                    .padding(5)
-                    }
-            })
+                })
+        }
     }
 }
 
 struct PuzzleMapGameView_Previews: PreviewProvider {
     static var previews: some View {
-        PuzzleMapGameView(puzzleSettings: .init(minNumberOfRows: 4,
-                                                maxNumberOfRows: 10,
-                                                minNumberOfColumns: 4,
-                                                maxNumberOfColumns: 10),
-                          viewModel: .init(puzzleMapRepository: PuzzleMapRepository()))
+        PuzzleMapGameView(viewModel: .init(puzzleMapRepository: PuzzleMapRepository()))
     }
 }

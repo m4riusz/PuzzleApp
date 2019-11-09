@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct PuzzleMapListItemView: View {
-    
     let puzzleMap: PuzzleMap
     
     var body: some View {
@@ -22,13 +21,14 @@ struct PuzzleMapListItemView: View {
                 Text("\(self.puzzleMap.numberOfRows)x\(self.puzzleMap.numberOfColumns)")
                     .font(.caption)
                     .foregroundColor(.gray)
-                    .padding([.bottom], 5)
+                    .padding([.top, .bottom], -10)
             }
             .frame(maxHeight: .infinity)
             .padding([.leading,.trailing], 10)
             HStack {
                 Text(self.puzzleMap.name)
                     .font(.body)
+                    .fontWeight(.semibold)
                     .lineLimit(2)
                 Spacer()
             }
