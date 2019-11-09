@@ -10,6 +10,7 @@ import SwiftUI
 
 struct PuzzleMapGameView: View {
     let puzzleSettings: PuzzleSettings
+    @State var isPresentingList: Bool = false
     @ObservedObject var viewModel: PuzzleMapGameViewModel
     
     var body: some View {

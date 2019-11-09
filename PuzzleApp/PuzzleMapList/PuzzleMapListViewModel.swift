@@ -26,4 +26,12 @@ final class PuzzleMapListViewModel: ObservableObject {
             .assign(to: \.puzzleMaps, on: self)
             .cancel(with: self.cancelBag)
     }
+    
+    func selectMap(_ map: PuzzleMap) {
+        self.puzzleMapRepository.selectMapById(map.id)
+    }
+    
+    func deleteMap(_ map: PuzzleMap) {
+        self.puzzleMapRepository.deleteMapById(map.id)
+    }
 }

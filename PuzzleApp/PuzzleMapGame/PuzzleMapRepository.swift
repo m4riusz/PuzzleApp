@@ -16,6 +16,7 @@ protocol PuzzleMapRepositoryProtocol {
     func tapOnPuzzle(mapId: Int,
                      row: Int,
                      column: Int)
+    func deleteMapById(_ mapId: Int)
     func getSelectedMap() -> AnyPublisher<PuzzleMap?, Never>
     func getAllMaps() -> AnyPublisher<[PuzzleMap], Never>
 }
@@ -31,6 +32,10 @@ struct PuzzleMapRepository: PuzzleMapRepositoryProtocol {
     }
     
     func tapOnPuzzle(mapId: Int, row: Int, column: Int) {
+        
+    }
+    
+    func deleteMapById(_ mapId: Int) {
         
     }
     
