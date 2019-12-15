@@ -76,8 +76,8 @@ final class PuzzleMapFormViewModel: ObservableObject {
         }
         guard case let .edit(map) = self.operationType else {
             self.puzzleMapRepository.createMap(name: self.name,
-                                               rows: self.numberOfRows,
-                                               columns: self.numberOfColumns,
+                                               numberOfRows: self.numberOfRows,
+                                               numberOfColumns: self.numberOfColumns,
                                                image: self.image!)
             return
         }

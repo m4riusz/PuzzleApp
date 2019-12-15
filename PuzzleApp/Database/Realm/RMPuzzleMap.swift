@@ -18,6 +18,10 @@ final class RMPuzzleMap: Object {
     @objc dynamic var numberOfColumns: Int = 0
     @objc dynamic var image: Data?
     var puzzles = List<RMPuzzle>()
+    
+    override class func primaryKey() -> String? {
+        return "id"
+    }
 }
 
 extension RMPuzzleMap: DomainConvertibleType {
@@ -41,7 +45,7 @@ extension PuzzleMap: RealmRepresentable {
             object.name = self.name
             object.numberOfRows = self.numberOfRows
             object.numberOfColumns = self.numberOfColumns
-            object.image = self.image?.pngData()
+            object.image = self.image?.jpegData(compressionQuality: 0.3)
             object.puzzles.append(objectsIn: self.puzzles.reduce([Puzzle](), {$0 + $1}).map { $0.asRealm()})
         }
     }

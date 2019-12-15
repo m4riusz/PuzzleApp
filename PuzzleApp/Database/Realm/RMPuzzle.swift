@@ -15,6 +15,10 @@ final class RMPuzzle: Object {
     @objc dynamic var numer: Int = 0
     @objc dynamic var preview: Bool = false
     @objc dynamic var image: Data = Data()
+    
+    override class func primaryKey() -> String? {
+        return "id"
+    }
 }
 
 extension RMPuzzle: DomainConvertibleType {

@@ -33,7 +33,7 @@ struct PuzzleMapGameView: View {
                         }
                     }
                     NavigationBarItem(imageName: "list.bullet",
-                                      enabled: self.viewModel.puzzleMap != nil) {
+                                      enabled: true) {
                                         self.isPresentingList.toggle()
                     }.sheet(isPresented: self.$isPresentingList) {
                         PuzzleMapListView(isPresentingList: self.$isPresentingList,

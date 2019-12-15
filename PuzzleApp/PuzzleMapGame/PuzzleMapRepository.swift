@@ -9,6 +9,7 @@
 import Foundation
 import Combine
 import UIKit
+import RealmSwift
 
 protocol PuzzleMapRepositoryProtocol {
     func selectMapById(_ mapId: Int)
@@ -17,8 +18,8 @@ protocol PuzzleMapRepositoryProtocol {
                      row: Int,
                      column: Int)
     func createMap(name: String,
-                   rows: Int,
-                   columns: Int,
+                   numberOfRows: Int,
+                   numberOfColumns: Int,
                    image: UIImage)
     func updateMapById(_ mapId: Int,
                        name: String,
@@ -34,11 +35,21 @@ protocol PuzzleMapRepositoryProtocol {
 struct PuzzleMapRepository: PuzzleMapRepositoryProtocol {
     
     func selectMapById(_ id: Int) {
-        
+        let realm = try! Realm()
+        realm.beginWrite()
+        realm.objects(RMPuzzleMap.self)
+            .forEach { $0.selected = $0.id == id }
+        try! realm.commitWrite()
     }
     
     func shuffleMapWithId(_ id: Int) {
-        
+        let realm = try! Realm()
+        guard let map = realm.object(ofType: RMPuzzleMap.self, forPrimaryKey: id) else {
+            return
+        }
+        realm.beginWrite()
+        map.puzzles.shuffle()
+        try! realm.commitWrite()
     }
     
     func tapOnPuzzle(mapId: Int, row: Int, column: Int) {
@@ -46,9 +57,49 @@ struct PuzzleMapRepository: PuzzleMapRepositoryProtocol {
     }
     
     func createMap(name: String,
-                   rows: Int,
-                   columns: Int,
+                   numberOfRows: Int,
+                   numberOfColumns: Int,
                    image: UIImage) {
+        let realm = try! Realm()
+        let nextMapId = (realm
+            .objects(RMPuzzleMap.self)
+            .max(ofProperty: "id") ?? 0) + 1
+        let nextPuzzleId = (realm
+            .objects(RMPuzzle.self)
+            .max(ofProperty: "id") ?? 0) + 1
+        
+        let size = image.size
+        let imageWidth = size.width / CGFloat(numberOfColumns)
+        let imageHeight = size.height / CGFloat(numberOfRows)
+        let scale = image.scale
+        
+        var puzzles: [[Puzzle]] = []
+        for rowIndex in 0..<numberOfRows {
+            puzzles.append([])
+            for columnIndex in 0..<numberOfColumns {
+                let rect = CGRect(x: imageWidth * CGFloat(columnIndex) * scale,
+                                  y: imageHeight * CGFloat(rowIndex) * scale,
+                                  width: imageWidth * scale,
+                                  height: imageHeight * scale)
+                let puzzleNumber = rowIndex * numberOfRows + columnIndex
+                puzzles[rowIndex].append(Puzzle(id: nextPuzzleId + puzzleNumber,
+                                                numer: puzzleNumber,
+                                                preview: false,
+                                                image: UIImage(cgImage: image.cgImage!.cropping(to: rect)!)))
+            }
+            
+        }
+        
+        let puzzleMap = PuzzleMap(id: nextMapId,
+                                  selected: false,
+                                  name: name,
+                                  numberOfRows: numberOfRows,
+                                  numberOfColumns: numberOfColumns,
+                                  image: image,
+                                  puzzles: puzzles)
+        realm.beginWrite()
+        realm.add(puzzleMap.asRealm(), update: .all)
+        try! realm.commitWrite()
         
     }
     
@@ -61,7 +112,13 @@ struct PuzzleMapRepository: PuzzleMapRepositoryProtocol {
     }
     
     func deleteMapById(_ mapId: Int) {
-        
+        let realm = try! Realm()
+        guard let object = realm.object(ofType: RMPuzzleMap.self, forPrimaryKey: mapId) else {
+            return
+        }
+        realm.beginWrite()
+        realm.delete(object)
+        try! realm.commitWrite()
     }
     
     func getPuzzleMapSettings() -> AnyPublisher<PuzzleSettings, Never> {
@@ -73,97 +130,29 @@ struct PuzzleMapRepository: PuzzleMapRepositoryProtocol {
     }
     
     func getSelectedMap() -> AnyPublisher<PuzzleMap?, Never> {
-        let puzzle0 = Puzzle(id: 0,
-                             numer: 0,
-                             preview: true,
-                             image: UIImage(named: "AppIcon")!)
-        let puzzle1 = Puzzle(id: 1,
-                             numer: 1,
-                             preview: false,
-                             image: UIImage(named: "AppIcon")!)
-        let puzzle2 = Puzzle(id: 2,
-                             numer: 2,
-                             preview: true,
-                             image: UIImage(named: "AppIcon")!)
-        let puzzle3 = Puzzle(id: 3,
-                             numer: 3,
-                             preview: true,
-                             image: UIImage(named: "AppIcon")!)
-        let puzzle4 = Puzzle(id: 4,
-                             numer: 4,
-                             preview: true,
-                             image: UIImage(named: "AppIcon")!)
-        let puzzle5 = Puzzle(id: 5,
-                             numer: 5,
-                             preview: true,
-                             image: UIImage(named: "AppIcon")!)
-        let puzzleMap = PuzzleMap(id: 1,
-                                  selected: true,
-                                  name: "Puzzle",
-                                  numberOfRows: 3,
-                                  numberOfColumns: 2,
-                                  image: UIImage(named: "AppIcon"),
-                                  puzzles: [[puzzle0, puzzle1],
-                                            [puzzle2, puzzle3],
-                                            [puzzle4, puzzle5]])
-        return Just(puzzleMap)
+        let realm = try! Realm()
+        
+        let objects = realm.objects(RMPuzzleMap.self)
+            .filter(NSPredicate(format: "selected = %@", NSNumber(booleanLiteral: true)))
+        return objects
+            .objectWillChange
+            .map { $0.first?.asDomain() }
             .eraseToAnyPublisher()
+            
     }
     
     
     func getAllMaps() -> AnyPublisher<[PuzzleMap], Never> {
-        let puzzle0 = Puzzle(id: 0,
-                             numer: 0,
-                             preview: true,
-                             image: UIImage(named: "AppIcon")!)
-        let puzzle1 = Puzzle(id: 1,
-                             numer: 1,
-                             preview: false,
-                             image: UIImage(named: "AppIcon")!)
-        let puzzle2 = Puzzle(id: 2,
-                             numer: 2,
-                             preview: true,
-                             image: UIImage(named: "AppIcon")!)
-        let puzzle3 = Puzzle(id: 3,
-                             numer: 3,
-                             preview: true,
-                             image: UIImage(named: "AppIcon")!)
-        let puzzle4 = Puzzle(id: 4,
-                             numer: 4,
-                             preview: true,
-                             image: UIImage(named: "AppIcon")!)
-        let puzzle5 = Puzzle(id: 5,
-                             numer: 5,
-                             preview: true,
-                             image: UIImage(named: "AppIcon")!)
-        let puzzleMap1 = PuzzleMap(id: 1,
-                                   selected: true,
-                                   name: "Puzzle 1",
-                                   numberOfRows: 3,
-                                   numberOfColumns: 2,
-                                   image: UIImage(named: "AppIcon"),
-                                   puzzles: [[puzzle0, puzzle1],
-                                             [puzzle2, puzzle3],
-                                             [puzzle4, puzzle5]])
-        let puzzleMap2 = PuzzleMap(id: 2,
-                                   selected: false,
-                                   name: "Puzzle 2",
-                                   numberOfRows: 2,
-                                   numberOfColumns: 3,
-                                   image: UIImage(named: "AppIcon"),
-                                   puzzles: [[puzzle0, puzzle1, puzzle2],
-                                             [puzzle5, puzzle4, puzzle3]])
-        let puzzleMap3 = PuzzleMap(id: 3,
-                                   selected: false,
-                                   name: "Puzzle 3",
-                                   numberOfRows: 3,
-                                   numberOfColumns: 3,
-                                   image: UIImage(named: "AppIcon"),
-                                   puzzles: [[puzzle0, puzzle1, puzzle2],
-                                             [puzzle4, puzzle5, puzzle1],
-                                             [puzzle2, puzzle3, puzzle4]])
+        let realm = try! Realm()
+        let objects = realm.objects(RMPuzzleMap.self)
         
-        return Just([puzzleMap1, puzzleMap2, puzzleMap3])
-            .eraseToAnyPublisher()
+        return objects
+        .objectWillChange
+        .print("MAP ITEMS")
+            .flatMap { result -> Just<[PuzzleMap]> in
+                
+                return Just(result.map { $0.asDomain() })
+        }
+    .eraseToAnyPublisher()
     }
 }
