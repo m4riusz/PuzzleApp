@@ -36,7 +36,8 @@ struct PuzzleView: View {
 
 struct PuzzleView_Previews: PreviewProvider {
     static var previews: some View {
-        PuzzleView(puzzle: .init(numer: 1,
+        PuzzleView(puzzle: .init(id: 0,
+                                 numer: 1,
                                  preview: false,
                                  image: UIImage(named: "AppIcon")!))
     }

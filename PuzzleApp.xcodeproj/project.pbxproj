@@ -40,8 +40,15 @@
 		6F8C5CE32360C11500F62947 /* FormSectionTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8C5CE22360C11500F62947 /* FormSectionTitle.swift */; };
 		6FA4757B2363240100A481C9 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA475792363240000A481C9 /* ArrayExtension.swift */; };
 		6FA4757C2363240100A481C9 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA4757A2363240000A481C9 /* IntExtension.swift */; };
+		6FBFA74323A63CE700B71C49 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 6FBFA74223A63CE700B71C49 /* Realm */; };
+		6FBFA74523A63CE700B71C49 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6FBFA74423A63CE700B71C49 /* RealmSwift */; };
+		6FBFA74823A63D6300B71C49 /* RMPuzzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBFA74723A63D6300B71C49 /* RMPuzzle.swift */; };
+		6FBFA74D23A63DCF00B71C49 /* DomainConvertibleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBFA74C23A63DCF00B71C49 /* DomainConvertibleType.swift */; };
+		6FBFA74F23A63DE300B71C49 /* RealmRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBFA74E23A63DE300B71C49 /* RealmRepresentable.swift */; };
 		6FD63F2D237C8DF9004164C6 /* MockPuzzleMapRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD63F2C237C8DF9004164C6 /* MockPuzzleMapRepository.swift */; };
 		6FD63F2F237C8FF6004164C6 /* PuzzleMapGameViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD63F2E237C8FF6004164C6 /* PuzzleMapGameViewModelTests.swift */; };
+		6FE93AF123A63F95008C2558 /* ObjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE93AF023A63F95008C2558 /* ObjectExtension.swift */; };
+		6FE93AF323A63FFA008C2558 /* RMPuzzleMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE93AF223A63FFA008C2558 /* RMPuzzleMap.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,8 +109,13 @@
 		6F8C5CE22360C11500F62947 /* FormSectionTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormSectionTitle.swift; sourceTree = "<group>"; };
 		6FA475792363240000A481C9 /* ArrayExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		6FA4757A2363240000A481C9 /* IntExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
+		6FBFA74723A63D6300B71C49 /* RMPuzzle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMPuzzle.swift; sourceTree = "<group>"; };
+		6FBFA74C23A63DCF00B71C49 /* DomainConvertibleType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainConvertibleType.swift; sourceTree = "<group>"; };
+		6FBFA74E23A63DE300B71C49 /* RealmRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepresentable.swift; sourceTree = "<group>"; };
 		6FD63F2C237C8DF9004164C6 /* MockPuzzleMapRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPuzzleMapRepository.swift; sourceTree = "<group>"; };
 		6FD63F2E237C8FF6004164C6 /* PuzzleMapGameViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleMapGameViewModelTests.swift; sourceTree = "<group>"; };
+		6FE93AF023A63F95008C2558 /* ObjectExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectExtension.swift; sourceTree = "<group>"; };
+		6FE93AF223A63FFA008C2558 /* RMPuzzleMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMPuzzleMap.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +123,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FBFA74523A63CE700B71C49 /* RealmSwift in Frameworks */,
+				6FBFA74323A63CE700B71C49 /* Realm in Frameworks */,
 				6F447F8B2361D93C00F4FC68 /* CancelBag in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -155,6 +169,7 @@
 		6F1BBE6123602FF50044CC09 /* PuzzleApp */ = {
 			isa = PBXGroup;
 			children = (
+				6FBFA74623A63D4900B71C49 /* Database */,
 				6F4E4A552362E2B70094E02F /* About */,
 				6F447F842361CD0B00F4FC68 /* Utils */,
 				6F447F6E2361958100F4FC68 /* Models */,
@@ -330,6 +345,26 @@
 			path = extensions;
 			sourceTree = "<group>";
 		};
+		6FBFA74623A63D4900B71C49 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				6FBFA74B23A63DBA00B71C49 /* Realm */,
+				6FBFA74C23A63DCF00B71C49 /* DomainConvertibleType.swift */,
+				6FBFA74E23A63DE300B71C49 /* RealmRepresentable.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		6FBFA74B23A63DBA00B71C49 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				6FBFA74723A63D6300B71C49 /* RMPuzzle.swift */,
+				6FE93AF223A63FFA008C2558 /* RMPuzzleMap.swift */,
+				6FE93AF023A63F95008C2558 /* ObjectExtension.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
 		6FD63F2A237C8D9B004164C6 /* PuzzleMapFormTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -364,6 +399,8 @@
 			name = PuzzleApp;
 			packageProductDependencies = (
 				6F447F8A2361D93C00F4FC68 /* CancelBag */,
+				6FBFA74223A63CE700B71C49 /* Realm */,
+				6FBFA74423A63CE700B71C49 /* RealmSwift */,
 			);
 			productName = PuzzleApp;
 			productReference = 6F1BBE5F23602FF50044CC09 /* PuzzleApp.app */;
@@ -440,6 +477,7 @@
 			mainGroup = 6F1BBE5623602FF50044CC09;
 			packageReferences = (
 				6F447F892361D93C00F4FC68 /* XCRemoteSwiftPackageReference "CancelBag" */,
+				6FBFA74123A63CE700B71C49 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 			);
 			productRefGroup = 6F1BBE6023602FF50044CC09 /* Products */;
 			projectDirPath = "";
@@ -486,6 +524,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F8C5CE32360C11500F62947 /* FormSectionTitle.swift in Sources */,
+				6FE93AF323A63FFA008C2558 /* RMPuzzleMap.swift in Sources */,
+				6FBFA74D23A63DCF00B71C49 /* DomainConvertibleType.swift in Sources */,
 				6F4E4A612362FF580094E02F /* PuzzleMapView.swift in Sources */,
 				6F447F872361CD3300F4FC68 /* AdaptsToSoftwareKeyboard.swift in Sources */,
 				6F447F7C23619F2900F4FC68 /* FormButton.swift in Sources */,
@@ -499,15 +539,18 @@
 				6F4E4A65236305AE0094E02F /* PuzzleMapGameViewModel.swift in Sources */,
 				6F4E4A5F2362FA6B0094E02F /* PuzzleView.swift in Sources */,
 				6F447F70236195A400F4FC68 /* PuzzleMap.swift in Sources */,
+				6FBFA74F23A63DE300B71C49 /* RealmRepresentable.swift in Sources */,
 				6F4E4A572362E2CE0094E02F /* AboutView.swift in Sources */,
 				6F4E4A5A2362E6380094E02F /* TabViewItem.swift in Sources */,
 				6F447F6D236194D900F4FC68 /* PuzzleMapFormViewModel.swift in Sources */,
 				6F447F7E2361ADAC00F4FC68 /* ImagePickerView.swift in Sources */,
+				6FE93AF123A63F95008C2558 /* ObjectExtension.swift in Sources */,
 				6F5E7D5A23607444001AA9FF /* MainTabView.swift in Sources */,
 				6F26B6A32376E98600021624 /* PuzzleMapListItemView.swift in Sources */,
 				6F8C5CDE2360ACF700F62947 /* PuzzleMapForm.swift in Sources */,
 				6FA4757B2363240100A481C9 /* ArrayExtension.swift in Sources */,
 				6F447F832361B99100F4FC68 /* FormImagePickerView.swift in Sources */,
+				6FBFA74823A63D6300B71C49 /* RMPuzzle.swift in Sources */,
 				6F4E4A6D236311F50094E02F /* PuzzleSettings.swift in Sources */,
 				6F26B69E2376E7E700021624 /* PuzzleMapListViewModel.swift in Sources */,
 				6F26B6A12376E8A300021624 /* PuzzleMapListView.swift in Sources */,
@@ -869,6 +912,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		6FBFA74123A63CE700B71C49 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa";
+			requirement = {
+				branch = jf/swiftui;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -876,6 +927,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6F447F892361D93C00F4FC68 /* XCRemoteSwiftPackageReference "CancelBag" */;
 			productName = CancelBag;
+		};
+		6FBFA74223A63CE700B71C49 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6FBFA74123A63CE700B71C49 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
+		6FBFA74423A63CE700B71C49 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6FBFA74123A63CE700B71C49 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

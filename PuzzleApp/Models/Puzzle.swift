@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 struct Puzzle {
+    let id: Int
     let numer: Int
     let preview: Bool
     let image: UIImage

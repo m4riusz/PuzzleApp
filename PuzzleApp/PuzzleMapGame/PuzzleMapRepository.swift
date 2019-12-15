@@ -73,22 +73,28 @@ struct PuzzleMapRepository: PuzzleMapRepositoryProtocol {
     }
     
     func getSelectedMap() -> AnyPublisher<PuzzleMap?, Never> {
-        let puzzle0 = Puzzle(numer: 0,
+        let puzzle0 = Puzzle(id: 0,
+                             numer: 0,
                              preview: true,
                              image: UIImage(named: "AppIcon")!)
-        let puzzle1 = Puzzle(numer: 1,
+        let puzzle1 = Puzzle(id: 1,
+                             numer: 1,
                              preview: false,
                              image: UIImage(named: "AppIcon")!)
-        let puzzle2 = Puzzle(numer: 2,
+        let puzzle2 = Puzzle(id: 2,
+                             numer: 2,
                              preview: true,
                              image: UIImage(named: "AppIcon")!)
-        let puzzle3 = Puzzle(numer: 3,
+        let puzzle3 = Puzzle(id: 3,
+                             numer: 3,
                              preview: true,
                              image: UIImage(named: "AppIcon")!)
-        let puzzle4 = Puzzle(numer: 4,
+        let puzzle4 = Puzzle(id: 4,
+                             numer: 4,
                              preview: true,
                              image: UIImage(named: "AppIcon")!)
-        let puzzle5 = Puzzle(numer: 5,
+        let puzzle5 = Puzzle(id: 5,
+                             numer: 5,
                              preview: true,
                              image: UIImage(named: "AppIcon")!)
         let puzzleMap = PuzzleMap(id: 1,
@@ -106,22 +112,28 @@ struct PuzzleMapRepository: PuzzleMapRepositoryProtocol {
     
     
     func getAllMaps() -> AnyPublisher<[PuzzleMap], Never> {
-        let puzzle0 = Puzzle(numer: 0,
+        let puzzle0 = Puzzle(id: 0,
+                             numer: 0,
                              preview: true,
                              image: UIImage(named: "AppIcon")!)
-        let puzzle1 = Puzzle(numer: 1,
+        let puzzle1 = Puzzle(id: 1,
+                             numer: 1,
                              preview: false,
                              image: UIImage(named: "AppIcon")!)
-        let puzzle2 = Puzzle(numer: 2,
+        let puzzle2 = Puzzle(id: 2,
+                             numer: 2,
                              preview: true,
                              image: UIImage(named: "AppIcon")!)
-        let puzzle3 = Puzzle(numer: 3,
+        let puzzle3 = Puzzle(id: 3,
+                             numer: 3,
                              preview: true,
                              image: UIImage(named: "AppIcon")!)
-        let puzzle4 = Puzzle(numer: 4,
+        let puzzle4 = Puzzle(id: 4,
+                             numer: 4,
                              preview: true,
                              image: UIImage(named: "AppIcon")!)
-        let puzzle5 = Puzzle(numer: 5,
+        let puzzle5 = Puzzle(id: 5,
+                             numer: 5,
                              preview: true,
                              image: UIImage(named: "AppIcon")!)
         let puzzleMap1 = PuzzleMap(id: 1,
